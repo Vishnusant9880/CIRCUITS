@@ -1,0 +1,40 @@
+The smoke sensor is used to detect the presence of smoke or combustion products in the air. 
+the smoke sensor primarily contains sensitive material that changes the resistance when it comes in contact with specific particles in the air.
+smoke sensors are highly sensitive to the presence of combustion byproducts, such as carbon monoxide (CO) and other volatile organic compounds (VOCs), which are typically present in smoke. Their sensitivity can be adjusted to detect different levels of smoke concentration.
+
+components used:
+1. smoke detector     --1
+2. resistor 220 ohms  --4
+3. arduino board
+4. RGB led
+
+the smoke detectors vcc  is connected to the Arduinos 5v.
+the GND of sensor is connected to the GND of the Arduino
+
+1.H -Pins
+Out of the two H pins(one upperside and one lower side), one pin is connected to supply and the other to ground
+
+2. A-Pins
+The A pins and B pins are interchangeable.(found on upper side) These pins will be tied to the Supply voltage.
+
+3. B-Pins
+The A pins and B pins are interchangeable.(found on lower side) One pin will act as output while the other will be pulled to ground.
+
+### connections
+#1# one H pin is connected to the vcc along with the 2 A pins
+#2# the remaining on H pin is coonected to the GND
+#3#  one B pin is given to act as output
+#4# other B pin is given to ground
+
+LED CONFIG
+pin 1 - red pin
+pin 2 - cathode (GND)
+pin 3 - blue pin
+pin 4 - green pin
+
+pin 1 (red) connected to the PWM pin 6.
+pin 2 (cathode) connected to the GND of Arduino.
+pin 3 (blue) connected to the PWM pin 5
+pin 4 (green )connected to the PWM pin 3
+
+
