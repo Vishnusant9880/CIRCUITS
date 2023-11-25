@@ -1,4 +1,5 @@
-#include "BlynkEdgent.h" #include <Deneyap_Servo.h> int ldr1 = A0; int ldr2 = A1; int pos; int voltage1 = 12; int voltage2 = 11; Servo myservo;
+#include "BlynkEdgent.h"
+ #include <Deneyap_Servo.h> int ldr1 = A0; int ldr2 = A1; int pos; int voltage1 = 12; int voltage2 = 11; Servo myservo;
 
 void servo_ldr() { int ldr1_read = analogRead(ldr1); int ldr2_read = analogRead(ldr2); Serial.print("light1 = "); Serial.println(ldr1_read); Serial.print("light2 = "); Serial.println(ldr2_read); int map1 = map(ldr1_read,0,8191,52,0); int map2 = map(ldr2_read,0,8191,53,105); if(ldr1_read>=ldr2_read) { myservo.write(map1); delay(30); } else { myservo.write(map2); delay(30); }
 
