@@ -1,21 +1,56 @@
 #include "BlynkEdgent.h"
- #include <Deneyap_Servo.h> int ldr1 = A0; int ldr2 = A1; int pos; int voltage1 = 12; int voltage2 = 11; Servo myservo;
+#include <Deneyap_Servo.h> 
+int ldr1 = A0; 
+int ldr2 = A1; 
+int pos; 
+int voltage1 = 12; 
+int voltage2 = 11;
+Servo myservo;
 
-void servo_ldr() { int ldr1_read = analogRead(ldr1); int ldr2_read = analogRead(ldr2); Serial.print("light1 = "); Serial.println(ldr1_read); Serial.print("light2 = "); Serial.println(ldr2_read); int map1 = map(ldr1_read,0,8191,52,0); int map2 = map(ldr2_read,0,8191,53,105); if(ldr1_read>=ldr2_read) { myservo.write(map1); delay(30); } else { myservo.write(map2); delay(30); }
+void servo_ldr() 
+{ int ldr1_read = analogRead(ldr1);
+ int ldr2_read = analogRead(ldr2);      Serial.print("light1 = "); Serial.println(ldr1_read); 
+Serial.print("light2 = "); Serial.println(ldr2_read);
+int map1 = map(ldr1_read,0,8191,52,0); 
+int map2 = map(ldr2_read,0,8191,53,105); if(ldr1_read>=ldr2_read) 
+{
+ myservo.write(map1); delay(30);
+ } 
+else 
+{ 
+myservo.write(map2); delay(30); 
+}
 
-void setup() { WiFi.begin(ssid,pass); pinMode(ldr1,INPUT); pinMode(ldr2,INPUT); pinMode(voltage1,INPUT); pinMode(voltage2,INPUT); Serial.begin(9600); myservo.attach(9); delay(100);
+vozzid setup()
+ {
+ WiFi.begin(ssid,pass); 
+pinMode(ldr1,INPUT); 
+pinMode(ldr2,INPUT); 
+pinMode(voltage1,INPUT);
+pinMode(voltage2,INPUT); 
+Serial.begin(9600);
+myservo.attach(9);
+delay(100);
 
-BlynkEdgent.begin(); }
+BlynkEdgent.begin(); 
+}
 
-void loop() { for(i=0;i<50;i++) { servo_ldr(); float volt1 = analogRead(voltage1);
+void loop() 
+{
+ for(i=0;i<50;i++)
+ { 
+servo_ldr(); 
+float volt1 = analogRead(voltage1);
 
 float volt2 = analogRead(voltage2);
 
-float vout_solar = (volt1/15500)*25; float vout_battery = (volt2/15500)*25;
+float vout_solar = (volt1/15500)*25;
+float vout_battery = (volt2/15500)*25;
 
 Serial.print("solar voltage = ");
 
-Serial.println(vout_solar); Serial.print("battery voltage = "); Serial.println(vout_battery);
+Serial.println(vout_solar);
+Serial.print("battery voltage = "); Serial.println(vout_battery);
 
 float map_volt1 = map(vout_battery,3.3,4.2,0,100);
 
@@ -23,4 +58,6 @@ Blynk.virtualWrite(V0, vout_solar); Blynk.virtualWrite(V1,vout_battery); Blynk.v
 
 //Blynk.virtualWrite(V4, millis() / 1000); delay(2000);
 
-BlynkEdgent.run(); } }
+BlynkEdgent.run();
+ } 
+}
